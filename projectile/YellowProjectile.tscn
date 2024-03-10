@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://ctkhyj3yx12n"]
+
+[ext_resource type="Script" path="res://projectile/YellowProjectile.gd" id="2_0pvuf"]
+[ext_resource type="Texture2D" uid="uid://b20xcjtxmjxdl" path="res://sprites/projectile/yellow.png" id="2_vnnr6"]
+[ext_resource type="PackedScene" uid="uid://dvacqw4xpkgfc" path="res://components/C_Projectile.tscn" id="3_mh5mq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sbsor"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ulst1"]
+radius = 6.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n001g"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+
+[node name="YellowProjectile" type="Node2D"]
+script = ExtResource("2_0pvuf")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_vnnr6")
+
+[node name="CharacterCollision" type="Area2D" parent="."]
+collision_layer = 8
+
+[node name="Shape" type="CollisionShape2D" parent="CharacterCollision"]
+shape = SubResource("CircleShape2D_sbsor")
+
+[node name="TileCollision" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 2
+
+[node name="Shape" type="CollisionShape2D" parent="TileCollision"]
+shape = SubResource("CircleShape2D_ulst1")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+process_material = SubResource("ParticleProcessMaterial_n001g")
+
+[node name="C_Projectile" parent="." instance=ExtResource("3_mh5mq")]
+
+[connection signal="body_entered" from="CharacterCollision" to="C_Projectile" method="_on_character_collision_body_entered"]
+[connection signal="body_entered" from="TileCollision" to="C_Projectile" method="_on_tile_collision_body_entered"]

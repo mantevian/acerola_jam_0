@@ -1,0 +1,53 @@
+[gd_scene load_steps=11 format=3 uid="uid://blkgrhbv42wu6"]
+
+[ext_resource type="Script" path="res://Portal.gd" id="1_ccum0"]
+[ext_resource type="Texture2D" uid="uid://batwqrbrj3uab" path="res://sprites/portal.png" id="1_tei35"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_15ynn"]
+
+[sub_resource type="Curve" id="Curve_56cgp"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ddgcu"]
+curve = SubResource("Curve_56cgp")
+
+[sub_resource type="Curve" id="Curve_5gpj3"]
+_data = [Vector2(0, 0.857143), 0.0, 0.0, 0, 0, Vector2(1, 0.252747), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_7ec3e"]
+curve = SubResource("Curve_5gpj3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_frpk1"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 0.01
+gravity = Vector3(0, 0, 0)
+radial_accel_max = 300.0
+scale_min = 2.0
+scale_max = 8.0
+scale_curve = SubResource("CurveTexture_7ec3e")
+alpha_curve = SubResource("CurveTexture_ddgcu")
+
+[sub_resource type="Gradient" id="Gradient_fxwo8"]
+offsets = PackedFloat32Array(0, 0.545455)
+colors = PackedColorArray(0.262745, 0, 0.501961, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_u3gbi"]
+gradient = SubResource("Gradient_fxwo8")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Portal" type="Node2D"]
+script = ExtResource("1_ccum0")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_15ynn")
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_frpk1")
+texture = SubResource("GradientTexture2D_u3gbi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_tei35")

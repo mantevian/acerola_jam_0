@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://773dpnfsqkgn"]
+
+[ext_resource type="Texture2D" uid="uid://b8qdi2p1p7pr8" path="res://sprites/ui/progress_bar_background.png" id="1_gykr8"]
+[ext_resource type="Script" path="res://LevelUI.gd" id="1_v4t7n"]
+[ext_resource type="Texture2D" uid="uid://d1g215qsm88u0" path="res://sprites/ui/progress_bar_progress.png" id="2_vxda2"]
+
+[node name="LevelUI" type="Control"]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+script = ExtResource("1_v4t7n")
+
+[node name="LevelInfo" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -129.0
+offset_right = 130.0
+offset_bottom = 68.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="LevelInfo"]
+layout_mode = 2
+text = "Level 01"
+horizontal_alignment = 2
+
+[node name="ProgressBar" type="TextureProgressBar" parent="LevelInfo"]
+layout_mode = 2
+size_flags_vertical = 4
+step = 0.01
+texture_under = ExtResource("1_gykr8")
+texture_progress = ExtResource("2_vxda2")
