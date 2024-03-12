@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://jtdrbvd7mlc2"]
+[gd_scene load_steps=29 format=3 uid="uid://jtdrbvd7mlc2"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_fnswr"]
 [ext_resource type="PackedScene" uid="uid://bng2ywy88tt0j" path="res://components/C_Health.tscn" id="2_toq2f"]
@@ -12,6 +12,8 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fdf52"]
 size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_woppf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_smnpw"]
 atlas = ExtResource("4_r8q8w")
@@ -141,13 +143,12 @@ script = ExtResource("1_fnswr")
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_fdf52")
 
-[node name="Light" type="PointLight2D" parent="."]
-color = Color(1, 0.666667, 0.290196, 1)
-energy = 16.0
-shadow_enabled = true
-shadow_color = Color(0, 0, 0, 0.643137)
-texture = ExtResource("3_1beip")
-texture_scale = 2.0
+[node name="CharacterCollision" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterCollision"]
+scale = Vector2(1.8, 1.8)
+shape = SubResource("RectangleShape2D_woppf")
 
 [node name="OuroborosProgress" type="Node2D" parent="."]
 script = ExtResource("3_fipd6")
@@ -165,10 +166,11 @@ speed_scale = 2.0
 
 [node name="WhiteOverlay" type="Sprite2D" parent="Sprite"]
 modulate = Color(1, 1, 1, 0)
-scale = Vector2(4, 4)
+scale = Vector2(2, 2)
 texture = ExtResource("4_kn4tl")
 
 [node name="C_Health" parent="." instance=ExtResource("2_toq2f")]
+max_value = 20.0
 max_immunity_time = 30
 
 [node name="C_CharacterMovement" parent="." instance=ExtResource("7_covwn")]
@@ -177,9 +179,21 @@ max_movement_velocity = 300.0
 
 [node name="C_ProjectileShooter" parent="." instance=ExtResource("8_nldtv")]
 projectile = ExtResource("9_752ct")
-damage = 5.0
-max_prepare_time = 5
-max_cooldown = 12
+damage = 2.5
+max_prepare_time = 3
+max_cooldown = 18
 self_knockback = 3.0
 
+[node name="Light" type="PointLight2D" parent="."]
+z_index = 2
+color = Color(1, 0.843137, 0.686275, 1)
+energy = 16.0
+range_item_cull_mask = 15
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.643137)
+shadow_item_cull_mask = 3
+texture = ExtResource("3_1beip")
+texture_scale = 2.0
+
 [connection signal="hurt" from="." to="." method="_on_hurt"]
+[connection signal="body_entered" from="CharacterCollision" to="." method="_on_character_collision_body_entered"]

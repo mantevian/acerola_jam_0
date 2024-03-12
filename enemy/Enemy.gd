@@ -10,6 +10,8 @@ signal hurt(amount: float, direction: Vector2)
 @onready var wandering: C_EnemyWandering = $C_EnemyWandering
 @onready var player = get_tree().root.get_node("Level").get_node("Player")
 
+@export var contact_damage: float = 2.0
+
 
 var lifetime = 0
 var manager: Enemies

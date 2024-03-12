@@ -1,4 +1,4 @@
-class_name Yellow
+class_name Spikey
 extends Enemy
 
 

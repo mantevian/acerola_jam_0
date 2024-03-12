@@ -2,329 +2,6 @@ class_name Level
 extends Node2D
 
 
-const LEVELS = [
-	{
-		"tiles": ["1111111111110000000000000000111111111111", "1111111111110000000000000000111111111111", "1111111111110000000000000000111111111111", "1111111111110000000000000000111111111111", "1111111111110000000000000000111111111111", "1111111111110000000000000000111111111111", "1111111111110000000000000000111111111111", "1111111111110000000000000000111111111111", "1111111111110000000000000000111111111111", "1111111111110000000000000000111111111111", "1111111111110000000000000000111111111111", "1111111111110000000000000000111111111111", "1111111111110000000000000000111111111111", "1111111111110000000000000000111111111111", "1111111111110000000000000000111111111111", "1111111111110000000000000000111111111111", "1111111111110000000000000000111111111111", "1111111111110000000000000000111111111111", "1111111111110000000000000000111111111111", "1111111111110000000000000000111111111111", "1111111111110000000000000000111111111111", "1111111111110000000000000000111111111111", "1111111111110000000000000000111111111111", "1111111111110000000000000000111111111111"],
-		"waves": [
-			{
-				"start_wait_time": 0.5,
-				"wait_time_between_enemies": 0.5,
-				"enemy_push": 1.0,
-				"spawn_position": {
-					"x": 0,
-					"y": -200
-				},
-				"enemies": {
-					"red": 1
-				}
-			},
-			{
-				"start_wait_time": 0.5,
-				"wait_time_between_enemies": 0.5,
-				"enemy_push": 1.0,
-				"spawn_position": {
-					"x": 0,
-					"y": -200
-				},
-				"enemies": {
-					"red": 2
-				}
-			},
-			{
-				"start_wait_time": 0.5,
-				"wait_time_between_enemies": 0.5,
-				"enemy_push": 1.0,
-				"spawn_position": {
-					"x": 0,
-					"y": -200
-				},
-				"enemies": {
-					"yellow": 1
-				}
-			},
-			{
-				"start_wait_time": 0.5,
-				"wait_time_between_enemies": 0.5,
-				"enemy_push": 1.0,
-				"spawn_position": {
-					"x": 0,
-					"y": -200
-				},
-				"enemies": {
-					"yellow": 2
-				}
-			}
-		]
-	},
-	{
-		"tiles": ["1111111100000000000000000000000011111111", "1111111100000000000000000000000011111111", "1111111100000000000000000000000011111111", "1111111100000000000000000000000011111111", "1111111100000000000000000000000011111111", "1111111100000000000000000000000011111111", "1111111100000000000000000000000011111111", "1111111100000000000000000000000011111111", "1111111100000000000000000000000011111111", "1111111100000000000000000000000011111111", "1111111100000000000000000000000011111111", "1111111100000000000000000000000011111111", "1111111100000000000000000000000011111111", "1111111100000000000000000000000011111111", "1111111100000000000000000000000011111111", "1111111100000000000000000000000011111111", "1111111100000000000000000000000011111111", "1111111100000000000000000000000011111111", "1111111100000000000000000000000011111111", "1111111100000000000000000000000011111111", "1111111100000000000000000000000011111111", "1111111100000000000000000000000011111111", "1111111100000000000000000000000011111111", "1111111100000000000000000000000011111111"],
-		"waves": [
-			{
-				"start_wait_time": 0.5,
-				"wait_time_between_enemies": 0.5,
-				"enemy_push": 1.0,
-				"spawn_position": {
-					"x": 0,
-					"y": 200
-				},
-				"enemies": {
-					"red": 2
-				}
-			},
-			{
-				"start_wait_time": 0.5,
-				"wait_time_between_enemies": 0.5,
-				"enemy_push": 1.0,
-				"spawn_position": {
-					"x": 0,
-					"y": -200
-				},
-				"enemies": {
-					"yellow": 2
-				}
-			},
-			{
-				"start_wait_time": 0.5,
-				"wait_time_between_enemies": 0.5,
-				"enemy_push": 1.0,
-				"spawn_position": {
-					"x": 0,
-					"y": 0
-				},
-				"enemies": {
-					"red": 1,
-					"yellow": 2
-				}
-			},
-			{
-				"start_wait_time": 0.5,
-				"wait_time_between_enemies": 0.5,
-				"enemy_push": 1.0,
-				"spawn_position": {
-					"x": 100,
-					"y": 100
-				},
-				"enemies": {
-					"red": 2,
-					"yellow": 2
-				}
-			},
-			{
-				"start_wait_time": 0.5,
-				"wait_time_between_enemies": 0.5,
-				"enemy_push": 2.0,
-				"spawn_position": {
-					"x": -100,
-					"y": -100
-				},
-				"enemies": {
-					"yellow": 4
-				}
-			}
-		]
-	},
-	{
-		"tiles": ["1111100000000000000000000000000000011111", "1111100000000000000000000000000000011111", "1111100000000000000000000000000000011111", "1111100000000000000000000000000000011111", "1111100000000000000000000000000000011111", "1111100000000000000000000000000000011111", "1111100000000000000000000000000000011111", "1111100000000000000000000000000000011111", "1111100000000000000000000000000000011111", "1111100000000000000000000000000000011111", "1111100000000000000000000000000000011111", "1111100000000000000000000000000000011111", "1111100000000000000000000000000000011111", "1111100000000000000000000000000000011111", "1111100000000000000000000000000000011111", "1111100000000000000000000000000000011111", "1111100000000000000000000000000000011111", "1111100000000000000000000000000000011111", "1111100000000000000000000000000000011111", "1111100000000000000000000000000000011111", "1111100000000000000000000000000000011111", "1111100000000000000000000000000000011111", "1111100000000000000000000000000000011111", "1111100000000000000000000000000000011111"],
-		"waves": [
-			{
-				"start_wait_time": 0.5,
-				"wait_time_between_enemies": 0.5,
-				"enemy_push": 2.0,
-				"spawn_position": {
-					"x": 200,
-					"y": 0
-				},
-				"enemies": {
-					"red": 1,
-					"yellow": 1
-				}
-			},
-			{
-				"start_wait_time": 0.5,
-				"wait_time_between_enemies": 0.5,
-				"enemy_push": 2.0,
-				"spawn_position": {
-					"x": -200,
-					"y": 0
-				},
-				"enemies": {
-					"red": 1,
-					"yellow": 2
-				}
-			},
-			{
-				"start_wait_time": 0.5,
-				"wait_time_between_enemies": 0.5,
-				"enemy_push": 2.0,
-				"spawn_position": {
-					"x": 0,
-					"y": 200
-				},
-				"enemies": {
-					"red": 2,
-					"yellow": 2
-				}
-			},
-			{
-				"start_wait_time": 0.5,
-				"wait_time_between_enemies": 0.2,
-				"enemy_push": 3.0,
-				"spawn_position": {
-					"x": 0,
-					"y": -200
-				},
-				"enemies": {
-					"red": 2,
-					"yellow": 3
-				}
-			},
-			{
-				"start_wait_time": 0.5,
-				"wait_time_between_enemies": 0.5,
-				"enemy_push": 1.0,
-				"spawn_position": {
-					"x": 200,
-					"y": -200
-				},
-				"enemies": {
-					"red": 2,
-					"yellow": 4
-				}
-			},
-			{
-				"start_wait_time": 0.5,
-				"wait_time_between_enemies": 0.5,
-				"enemy_push": 1.0,
-				"spawn_position": {
-					"x": -200,
-					"y": 200
-				},
-				"enemies": {
-					"red": 5,
-					"yellow": 2
-				}
-			},
-			{
-				"start_wait_time": 0.5,
-				"wait_time_between_enemies": 0.01,
-				"enemy_push": 5.0,
-				"spawn_position": {
-					"x": 0,
-					"y": 0
-				},
-				"enemies": {
-					"red": 8
-				}
-			}
-		]
-	},
-	{
-		"tiles": ["0000000000000000000000000000000000000000", "0000000000000000000000000000000000000000", "0001111111100000000000000000011111111000", "0001111111100000000000000000011111111000", "0001111111100000000000000000011111111000", "0001111111100000000000000000011111111000", "0000000000000000000000000000000000000000", "0000000000000000000000000000000000000000", "0000000000000000000000000000000000000000", "0000000000000000000000000000000000000000", "0000000000000000000000000000000000000000", "0000000000000000000000000000000000000000", "0000000000000000000000000000000000000000", "0000000000000000000000000000000000000000", "0000000000000000000000000000000000000000", "0000000000000000000000000000000000000000", "0000000000000000000000000000000000000000", "0001111111100000000000000000011111111000", "0001111111100000000000000000011111111000", "0001111111100000000000000000011111111000", "0001111111100000000000000000011111111000", "0000000000000000000000000000000000000000", "0000000000000000000000000000000000000000", "0000000000000000000000000000000000000000"],
-		"waves": [
-			{
-				"start_wait_time": 0.0,
-				"wait_time_between_enemies": 0.01,
-				"enemy_push": 4.0,
-				"spawn_position": {
-					"x": 0,
-					"y": 0
-				},
-				"enemies": {
-					"red": 2
-				}
-			},
-			{
-				"start_wait_time": 0.0,
-				"wait_time_between_enemies": 0.01,
-				"enemy_push": 4.0,
-				"spawn_position": {
-					"x": 0,
-					"y": 0
-				},
-				"enemies": {
-					"red": 3
-				}
-			},
-			{
-				"start_wait_time": 0.0,
-				"wait_time_between_enemies": 0.01,
-				"enemy_push": 4.0,
-				"spawn_position": {
-					"x": 0,
-					"y": 0
-				},
-				"enemies": {
-					"red": 1,
-					"yellow": 2
-				}
-			},
-			{
-				"start_wait_time": 0.0,
-				"wait_time_between_enemies": 0.01,
-				"enemy_push": 4.0,
-				"spawn_position": {
-					"x": 0,
-					"y": 0
-				},
-				"enemies": {
-					"red": 2,
-					"yellow": 2
-				}
-			},
-			{
-				"start_wait_time": 0.0,
-				"wait_time_between_enemies": 0.01,
-				"enemy_push": 4.0,
-				"spawn_position": {
-					"x": 0,
-					"y": 0
-				},
-				"enemies": {
-					"yellow": 4
-				}
-			},
-			{
-				"start_wait_time": 0.0,
-				"wait_time_between_enemies": 0.01,
-				"enemy_push": 4.0,
-				"spawn_position": {
-					"x": 0,
-					"y": 0
-				},
-				"enemies": {
-					"red": 3
-				}
-			},
-			{
-				"start_wait_time": 0.0,
-				"wait_time_between_enemies": 0.01,
-				"enemy_push": 4.0,
-				"spawn_position": {
-					"x": 0,
-					"y": 0
-				},
-				"enemies": {
-					"red": 4
-				}
-			},
-			{
-				"start_wait_time": 0.0,
-				"wait_time_between_enemies": 0.01,
-				"enemy_push": 4.0,
-				"spawn_position": {
-					"x": 0,
-					"y": 0
-				},
-				"enemies": {
-					"red": 2,
-					"yellow": 4
-				}
-			}
-		]
-	}
-]
-
-
 const w = 20
 const h = 12
 
@@ -336,10 +13,12 @@ var spawning = false
 @onready var tilemap: TileMap = $TileMap
 @onready var enemy_manager: Enemies = $Enemies
 
-@onready var ui: Control = $LevelUI
-
-@onready var pause_menu: Control = $PauseMenu
+@onready var ui: Control = $UILayer/LevelUI
+@onready var pause_menu: Control = $UILayer/PauseMenu
+@onready var level_complete_screen: Control = $LevelComplete/LevelCompleteScreen
+@onready var player: Player = $Player
 var paused = false
+var is_level_completed = false
 
 
 var portal_scene = preload("res://Portal.tscn")
@@ -350,12 +29,22 @@ func wait(sec: float):
 
 
 func start_next_level():
+	is_level_completed = false
 	current_wave = -1
 	current_level += 1
 	
+	player.health.heal(player.health.max_value)
+	player.position = Vector2.ZERO
+	
+	player.shooter.amount_per_shot = int(current_level / 4) + 1
+	player.shooter.spread = float(int(current_level / 4)) * 0.03
+	
+	get_tree().paused = false
+	level_complete_screen.hide()
+	
 	for y in range(-h, h):
 		for x in range(-w, w):
-			var c = LEVELS[current_level].tiles[y + h][x + w]
+			var c = LevelData.LEVELS[current_level].tiles[y + h][x + w]
 			
 			match c:
 				'0':
@@ -365,7 +54,7 @@ func start_next_level():
 	
 	var total_enemy_count = 0
 	
-	for wave in LEVELS[current_level].waves:
+	for wave in LevelData.LEVELS[current_level].waves:
 		for enemy in wave.enemies:
 			total_enemy_count += wave.enemies[enemy]
 	
@@ -375,7 +64,7 @@ func start_next_level():
 
 func spawn_next_wave():
 	current_wave += 1
-	var wave_data = LEVELS[current_level].waves[current_wave]
+	var wave_data = LevelData.LEVELS[current_level].waves[current_wave]
 	
 	spawning = true
 	
@@ -399,6 +88,17 @@ func get_remaining_enemy_amount():
 	return enemy_manager.get_child_count()
 
 
+func level_complete():
+	is_level_completed = true
+	get_tree().paused = true
+	level_complete_screen.show()
+	
+	if (current_level + 1) % 4 == 0:
+		level_complete_screen.gained_slash_label.show()
+	else:
+		level_complete_screen.gained_slash_label.hide()
+
+
 func _ready():
 	enemy_manager.level = self
 	start_next_level()
@@ -407,21 +107,21 @@ func _ready():
 func _physics_process(delta):
 	if get_remaining_enemy_amount() == 0 and not spawning:
 		if timeout == -1:
-			timeout = 60
+			timeout = 180
 		
 		if timeout > 0:
 			timeout -= 1
 		
 		if timeout == 0:
-			if current_wave == LEVELS[current_level].waves.size() - 1:
-				start_next_level()
+			if current_wave == LevelData.LEVELS[current_level].waves.size() - 1:
+				level_complete()
 			else:
 				spawn_next_wave()
 			timeout = -1
 
 
 func _input(event):
-	if event.is_action_pressed("Pause"):
+	if event.is_action_pressed("Pause") and not is_level_completed:
 		paused = not paused
 		get_tree().paused = paused
 		if paused:

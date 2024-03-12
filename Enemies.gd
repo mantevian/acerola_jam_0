@@ -3,11 +3,11 @@ extends Node2D
 
 
 var enemies = {
-	"red": {
-		"scene": preload("res://enemy/Red.tscn"),
+	"rocky": {
+		"scene": preload("res://enemy/Rocky.tscn"),
 	},
-	"yellow": {
-		"scene": preload("res://enemy/Yellow.tscn"),
+	"spikey": {
+		"scene": preload("res://enemy/Spikey.tscn"),
 	}
 }
 
@@ -21,13 +21,11 @@ func _ready():
 
 
 func spawn_enemy(name: String, pos: Vector2, enemy_push: float):
-	var rng = RandomNumberGenerator.new()
-	
 	var data = enemies[name]
 	var enemy: Enemy = data["scene"].instantiate()
 	enemy.position = pos
 	
-	var angle = rng.randf_range(-3.14, 3.14)
+	var angle = randf_range(-3.14, 3.14)
 	enemy.initial_push = Vector2(cos(angle), sin(angle)) * 100.0 * enemy_push
 	enemy.manager = self
 	add_child(enemy)

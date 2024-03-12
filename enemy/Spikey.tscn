@@ -1,0 +1,48 @@
+[gd_scene load_steps=10 format=3 uid="uid://c380b5ru6ckx"]
+
+[ext_resource type="Script" path="res://enemy/Spikey.gd" id="1_gqm04"]
+[ext_resource type="Texture2D" uid="uid://dvvjt4nt0ahum" path="res://sprites/enemy/spikey.png" id="2_jsg1r"]
+[ext_resource type="Texture2D" uid="uid://db4n26ypsdgac" path="res://sprites/invincibility.png" id="3_qy2l6"]
+[ext_resource type="PackedScene" uid="uid://bng2ywy88tt0j" path="res://components/C_Health.tscn" id="4_wc2cm"]
+[ext_resource type="PackedScene" uid="uid://cnfbin4i6ky3s" path="res://components/C_CharacterMovement.tscn" id="5_63o7v"]
+[ext_resource type="PackedScene" uid="uid://cwo34w2mwx8m8" path="res://components/C_EnemyWandering.tscn" id="6_meyoc"]
+[ext_resource type="PackedScene" uid="uid://ivxqjh03xpa5" path="res://components/C_ProjectileShooter.tscn" id="7_np0mk"]
+[ext_resource type="PackedScene" uid="uid://ctkhyj3yx12n" path="res://projectile/Spike.tscn" id="8_8j73r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cewxw"]
+
+[node name="Spikey" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 7
+motion_mode = 1
+script = ExtResource("1_gqm04")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+scale = Vector2(1.7, 1.7)
+shape = SubResource("RectangleShape2D_cewxw")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+clip_children = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_jsg1r")
+
+[node name="WhiteOverlay" type="Sprite2D" parent="Sprite"]
+modulate = Color(1, 1, 1, 0)
+texture = ExtResource("3_qy2l6")
+
+[node name="C_Health" parent="." instance=ExtResource("4_wc2cm")]
+max_value = 8.0
+
+[node name="C_CharacterMovement" parent="." instance=ExtResource("5_63o7v")]
+movement_speed = 2.0
+max_movement_velocity = 200.0
+
+[node name="C_EnemyWandering" parent="." instance=ExtResource("6_meyoc")]
+
+[node name="C_ProjectileShooter" parent="." instance=ExtResource("7_np0mk")]
+projectile = ExtResource("8_8j73r")
+damage = 2.5
+max_cooldown = 90
+
+[connection signal="hurt" from="." to="." method="_on_hurt"]
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]

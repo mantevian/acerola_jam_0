@@ -12,6 +12,11 @@ signal hurt(amount: float, direction: Vector2)
 @onready var sprite = $Sprite
 
 
+var slash_level = 0
+var body_level = 0
+var swiftness_level = 0
+
+
 func _ready():
 	sprite.play()
 
@@ -34,7 +39,7 @@ func _input(event):
 			var burst: Burst = burst_scene.instantiate()
 			burst.shooter = self
 			add_child(burst)
-			ability_timeout = 300
+			ability_timeout = (300 - swiftness_level * 20)
 		
 		ouroboros_positions = []
 		holding_rmb = false
@@ -62,3 +67,8 @@ func _physics_process(delta):
 func _on_hurt(amount, direction):
 	health.damage(amount)
 	movement.push(direction)
+
+
+func _on_character_collision_body_entered(body):
+	if body is Enemy:
+		emit_signal("hurt", body.contact_damage, (position - body.position).normalized() * movement.max_movement_velocity * 2.0)

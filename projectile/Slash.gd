@@ -19,5 +19,5 @@ func _physics_process(delta):
 
 
 func _draw():
-	var arc = float(lifetime + 90) / 360 * PI
-	draw_arc(Vector2(-10, 0), 20 + lifetime * 0.3, -arc, arc, 64, Color(0.8, 0.7, 0.5), 8 + lifetime * 0.2)
+	var arc = float(lifetime + 150) / 420 * PI
+	draw_arc(Vector2(-10, 0), 20 + lifetime * 0.4, -arc, arc, 64, Color(0.8, 0.7, 0.5), 8 + lifetime * 0.3)

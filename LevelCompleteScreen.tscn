@@ -1,0 +1,113 @@
+[gd_scene load_steps=6 format=3 uid="uid://don1fsmbo5v87"]
+
+[ext_resource type="Script" path="res://LevelCompleteScreen.gd" id="1_j8sty"]
+[ext_resource type="Texture2D" uid="uid://htqdbd0hvfua" path="res://sprites/ui/damage_upgrade.png" id="2_b66ky"]
+[ext_resource type="Texture2D" uid="uid://23rs6lbvfjp4" path="res://sprites/ui/health_upgrade.png" id="3_q0svo"]
+[ext_resource type="Texture2D" uid="uid://cq5r5772v1d2d" path="res://sprites/ui/speed_upgrade.png" id="4_lhjrm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i5q05"]
+bg_color = Color(0.14902, 0.172549, 0.25098, 0.901961)
+
+[node name="LevelCompleteScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j8sty")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i5q05")
+
+[node name="GainedSlashLabel" type="Label" parent="Panel"]
+layout_mode = 2
+offset_left = 440.0
+offset_top = 267.0
+offset_right = 1160.0
+offset_bottom = 334.0
+theme_override_font_sizes/font_size = 40
+text = "Gained +1 Slash per shot!"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -360.0
+offset_top = -309.0
+offset_right = 360.0
+offset_bottom = 260.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 128
+
+[node name="LevelCompleteLabel" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "LEVEL COMPLETE"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="ChooseUpgradeLabel" type="Label" parent="Panel/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Choose an upgrade"
+horizontal_alignment = 1
+
+[node name="Options" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 48
+alignment = 1
+
+[node name="UpgradeSlash" type="Button" parent="Panel/VBoxContainer/VBoxContainer/Options"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 24
+text = "Slash"
+icon = ExtResource("2_b66ky")
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="UpgradeBody" type="Button" parent="Panel/VBoxContainer/VBoxContainer/Options"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 24
+text = "Body"
+icon = ExtResource("3_q0svo")
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="UpgradeSwiftness" type="Button" parent="Panel/VBoxContainer/VBoxContainer/Options"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 24
+text = "Swiftness"
+icon = ExtResource("4_lhjrm")
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="SkipButton" type="Button" parent="Panel/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 24
+text = "Skip"
+
+[connection signal="button_down" from="Panel/VBoxContainer/VBoxContainer/Options/UpgradeSlash" to="." method="_on_upgrade_slash_button_down"]
+[connection signal="button_down" from="Panel/VBoxContainer/VBoxContainer/Options/UpgradeBody" to="." method="_on_upgrade_body_button_down"]
+[connection signal="button_down" from="Panel/VBoxContainer/VBoxContainer/Options/UpgradeSwiftness" to="." method="_on_upgrade_swiftness_button_down"]
+[connection signal="button_down" from="Panel/VBoxContainer/SkipButton" to="." method="_on_skip_button_button_down"]

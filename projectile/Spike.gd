@@ -1,4 +1,4 @@
-class_name YellowProjectile
+class_name Spike
 extends Projectile
 
 

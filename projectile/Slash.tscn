@@ -39,6 +39,7 @@ collision_layer = 8
 collision_mask = 4
 
 [node name="Shape" type="CollisionShape2D" parent="CharacterCollision"]
+scale = Vector2(3, 3)
 shape = SubResource("CircleShape2D_sbsor")
 
 [node name="TileCollision" type="Area2D" parent="."]

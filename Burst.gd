@@ -5,10 +5,10 @@ extends Area2D
 var shooter: CharacterBody2D
 @onready var lifetime: int = 0
 
-var damage: float = 8.0
+var damage: float = 3.0
 var speed: float = 1.0
 var is_friendly: bool = true
-var knockback: float = 8.0
+var knockback: float = 7.0
 
 
 func _ready():

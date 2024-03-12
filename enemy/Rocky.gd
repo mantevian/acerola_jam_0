@@ -1,4 +1,4 @@
-class_name Red
+class_name Rocky
 extends Enemy
 
 
