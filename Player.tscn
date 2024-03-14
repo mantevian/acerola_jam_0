@@ -170,8 +170,8 @@ scale = Vector2(2, 2)
 texture = ExtResource("4_kn4tl")
 
 [node name="C_Health" parent="." instance=ExtResource("2_toq2f")]
-max_value = 20.0
-max_immunity_time = 30
+max_value = 25.0
+max_immunity_time = 60
 
 [node name="C_CharacterMovement" parent="." instance=ExtResource("7_covwn")]
 movement_speed = 2.0
@@ -182,7 +182,7 @@ projectile = ExtResource("9_752ct")
 damage = 2.5
 max_prepare_time = 3
 max_cooldown = 18
-self_knockback = 3.0
+self_knockback = 0.4
 
 [node name="Light" type="PointLight2D" parent="."]
 z_index = 2
@@ -196,4 +196,5 @@ texture = ExtResource("3_1beip")
 texture_scale = 2.0
 
 [connection signal="hurt" from="." to="." method="_on_hurt"]
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="body_entered" from="CharacterCollision" to="." method="_on_character_collision_body_entered"]

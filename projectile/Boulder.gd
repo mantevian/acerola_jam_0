@@ -1,4 +1,4 @@
-class_name Spike
+class_name Boulder
 extends Projectile
 
 
@@ -7,7 +7,3 @@ extends Projectile
 
 func _ready():
 	pass
-
-
-func _physics_process(delta):
-	rotate(0.1)

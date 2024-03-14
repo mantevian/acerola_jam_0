@@ -13,9 +13,10 @@
 
 [node name="Spikey" type="CharacterBody2D"]
 collision_layer = 4
-collision_mask = 7
+collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_gqm04")
+contact_damage = 4.0
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 scale = Vector2(1.7, 1.7)
@@ -38,6 +39,7 @@ movement_speed = 2.0
 max_movement_velocity = 200.0
 
 [node name="C_EnemyWandering" parent="." instance=ExtResource("6_meyoc")]
+target_spread = 90.0
 
 [node name="C_ProjectileShooter" parent="." instance=ExtResource("7_np0mk")]
 projectile = ExtResource("8_8j73r")

@@ -1,4 +1,4 @@
-class_name Flakey
+class_name Rocky
 extends Enemy
 
 

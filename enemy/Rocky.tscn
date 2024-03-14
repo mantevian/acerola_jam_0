@@ -11,9 +11,10 @@
 
 [node name="Rocky" type="CharacterBody2D"]
 collision_layer = 4
-collision_mask = 7
+collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_2go7f")
+contact_damage = 3.0
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 scale = Vector2(1.7, 1.7)
@@ -37,6 +38,7 @@ movement_speed = 2.0
 max_movement_velocity = 200.0
 
 [node name="C_EnemyWandering" parent="." instance=ExtResource("6_xa6ll")]
+agility = 0.05
 
 [connection signal="hurt" from="." to="." method="_on_hurt"]
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]

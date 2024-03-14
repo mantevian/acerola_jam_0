@@ -26,14 +26,14 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_i5q05")
 
-[node name="GainedSlashLabel" type="Label" parent="Panel"]
+[node name="RewardLabel" type="Label" parent="Panel"]
 layout_mode = 2
-offset_left = 440.0
+offset_left = 4.0
 offset_top = 267.0
-offset_right = 1160.0
+offset_right = 1599.0
 offset_bottom = 334.0
+theme_override_colors/font_color = Color(1, 1, 0.364706, 1)
 theme_override_font_sizes/font_size = 40
-text = "Gained +1 Slash per shot!"
 horizontal_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel"]

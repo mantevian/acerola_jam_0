@@ -1,5 +1,8 @@
-class_name Flakey
+class_name Bouldy
 extends Enemy
+
+
+@onready var shooter = $C_ProjectileShooter
 
 
 func _ready():
@@ -8,7 +11,12 @@ func _ready():
 
 func _physics_process(delta):
 	super(delta)
+	if (shooter.cooldown == 0):
+		shooter.shoot(0)
+	
 	move_and_slide()
+	
+	rotate(0.01)
 
 
 func _on_hurt(amount, direction):

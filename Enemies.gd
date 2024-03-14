@@ -4,15 +4,24 @@ extends Node2D
 
 var enemies = {
 	"rocky": {
-		"scene": preload("res://enemy/Rocky.tscn"),
+		"scene": load("res://enemy/Rocky.tscn"),
 	},
 	"spikey": {
-		"scene": preload("res://enemy/Spikey.tscn"),
+		"scene": load("res://enemy/Spikey.tscn"),
+	},
+	"bouldy": {
+		"scene": load("res://enemy/Bouldy.tscn")
+	},
+	"flakey": {
+		"scene": load("res://enemy/Flakey.tscn")
+	},
+	"flowey": {
+		"scene": load("res://enemy/Flowey.tscn")
 	}
 }
 
 
-var level: Level
+@export var level: Level
 var killed_in_this_level = 0
 
 
@@ -32,6 +41,15 @@ func spawn_enemy(name: String, pos: Vector2, enemy_push: float):
 
 
 func enemy_killed(enemy: Enemy):
+	var particle = preload("res://DeathParticles.tscn").instantiate()
+	particle.position = enemy.position
+	particle.emitting = true
+	level.particle_manager.add_child(particle)
+	
+	var tween = create_tween()
+	tween.tween_property(particle, "position", particle.position, 2.0)
+	tween.tween_callback(particle.queue_free)
+	
 	killed_in_this_level += 1
 	level.ui.set_current_progress(killed_in_this_level)
 

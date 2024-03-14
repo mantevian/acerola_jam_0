@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://bc6ie7timb6bf"]
+
+[ext_resource type="Script" path="res://enemy/Rocky.gd" id="1_4yors"]
+[ext_resource type="Texture2D" uid="uid://n4ia684jin1a" path="res://sprites/enemy/flakey.png" id="2_g013w"]
+[ext_resource type="Texture2D" uid="uid://db4n26ypsdgac" path="res://sprites/invincibility.png" id="3_jp87y"]
+[ext_resource type="PackedScene" uid="uid://bng2ywy88tt0j" path="res://components/C_Health.tscn" id="4_31ild"]
+[ext_resource type="PackedScene" uid="uid://cnfbin4i6ky3s" path="res://components/C_CharacterMovement.tscn" id="5_r53oj"]
+[ext_resource type="PackedScene" uid="uid://cwo34w2mwx8m8" path="res://components/C_EnemyWandering.tscn" id="6_fc0p8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cewxw"]
+
+[node name="Flakey" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 3
+motion_mode = 1
+script = ExtResource("1_4yors")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+scale = Vector2(1.4, 1.4)
+shape = SubResource("RectangleShape2D_cewxw")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+clip_children = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_g013w")
+
+[node name="WhiteOverlay" type="Sprite2D" parent="Sprite"]
+modulate = Color(1, 1, 1, 0)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_jp87y")
+
+[node name="C_Health" parent="." instance=ExtResource("4_31ild")]
+max_value = 2.0
+
+[node name="C_CharacterMovement" parent="." instance=ExtResource("5_r53oj")]
+movement_speed = 3.0
+max_movement_velocity = 200.0
+
+[node name="C_EnemyWandering" parent="." instance=ExtResource("6_fc0p8")]
+agility = 0.06
+target_spread = 160.0
+min_interval_between_choosing_targets = 20
+max_interval_between_choosing_targets = 60
+
+[connection signal="hurt" from="." to="." method="_on_hurt"]
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]

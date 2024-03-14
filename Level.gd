@@ -12,6 +12,7 @@ var spawning = false
 
 @onready var tilemap: TileMap = $TileMap
 @onready var enemy_manager: Enemies = $Enemies
+@onready var particle_manager = $Particles
 
 @onready var ui: Control = $UILayer/LevelUI
 @onready var pause_menu: Control = $UILayer/PauseMenu
@@ -36,8 +37,7 @@ func start_next_level():
 	player.health.heal(player.health.max_value)
 	player.position = Vector2.ZERO
 	
-	player.shooter.amount_per_shot = int(current_level / 4) + 1
-	player.shooter.spread = float(int(current_level / 4)) * 0.03
+	player.shooter.spread = float(int(current_level / 3)) * 0.03
 	
 	get_tree().paused = false
 	level_complete_screen.hide()
@@ -93,21 +93,32 @@ func level_complete():
 	get_tree().paused = true
 	level_complete_screen.show()
 	
-	if (current_level + 1) % 4 == 0:
-		level_complete_screen.gained_slash_label.show()
+	var label = level_complete_screen.reward_label
+	
+	var l = current_level + 1
+	
+	if l == 3:
+		label.text = "Gained the Burst ability! Right click and rotate to use"
+		player.unlocked_burst = true
+	
+	if l == 6:
+		label.text = "Gained +1 Slash per shot!"
+		player.shooter.amount_per_shot = 2
+	
+	if (l == 3) or (l == 6):
+		label.show()
 	else:
-		level_complete_screen.gained_slash_label.hide()
+		label.hide()
 
 
 func _ready():
-	enemy_manager.level = self
 	start_next_level()
 
 
 func _physics_process(delta):
 	if get_remaining_enemy_amount() == 0 and not spawning:
 		if timeout == -1:
-			timeout = 180
+			timeout = 90
 		
 		if timeout > 0:
 			timeout -= 1

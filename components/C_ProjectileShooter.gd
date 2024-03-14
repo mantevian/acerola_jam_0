@@ -10,6 +10,7 @@ extends Node2D
 @export var amount_per_shot: int = 1
 @export var interval_between_shots: float = 0.2
 @export var spread: float = 0.0
+@export var spread_randomness: float = 0.0
 
 var shooting = false
 var angle: float
@@ -51,15 +52,15 @@ func tick_shooting():
 	
 	var p: Projectile
 	for i in range(amount_per_shot):
-		p = create_projectile()
+		p = create_projectile(i)
 		await get_tree().create_timer(interval_between_shots).timeout
 
 
-func create_projectile():
+func create_projectile(i: int):
 	var p: Projectile = projectile.instantiate()
 	get_parent().get_tree().root.get_node("Level").get_node("Projectiles").add_child(p)
 	
-	var a = angle + randf_range(-spread, spread)
+	var a = angle + spread * i + randf_range(-spread_randomness, spread_randomness)
 	p.projectile.shooter = get_parent()
 	p.position = get_parent().position
 	p.rotation = a

@@ -7,7 +7,6 @@ signal hurt(amount: float, direction: Vector2)
 
 @onready var health: C_Health = $C_Health
 @onready var movement: C_CharacterMovement = $C_CharacterMovement
-@onready var wandering: C_EnemyWandering = $C_EnemyWandering
 @onready var player = get_tree().root.get_node("Level").get_node("Player")
 
 @export var contact_damage: float = 2.0
@@ -31,9 +30,6 @@ func _physics_process(delta):
 		scale.y = 1 + sin(0.01 * lifetime) * 0.05
 	
 	lifetime += 1
-
-	look_at(wandering.current_velocity + position)
-	movement.set_velocity(wandering.current_velocity)
 
 
 func on_hurt(amount: float, direction: Vector2):
